@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "Space Shooter",
+  "version": "1.0.0",
+  "description": "A classic arcade-style retro space shooter! Made by Rantideb",
+  "permissions": [
+    "webNavigation"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png"
+    },
+    "default_title": "Space Shooter"
+  }
+}

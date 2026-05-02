@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Retro Space Shooter</title>
+  <!-- Import Chrome Dino style pixel font -->
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="game.css">
+</head>
+<body>
+  <div id="gameWrapper">
+    <canvas id="gameCanvas"></canvas>
+
+    <div id="hud" class="hidden">
+      <div class="hud-item">
+        <span class="hud-label">SCORE</span>
+        <span id="scoreDisplay" class="hud-value">0</span>
+      </div>
+      
+      <button id="pauseBtn" class="pause-btn">||</button>
+
+      <div class="hud-item">
+        <span class="hud-label">LIVES</span>
+        <span id="livesDisplay" class="hud-value">▲ ▲ ▲</span>
+      </div>
+    </div>
+
+    <!-- START SCREEN -->
+    <div id="startScreen" class="screen">
+      <h1 class="game-title">SPACE SHOOTER</h1>
+      <p class="game-subtitle">B&W Edition</p>
+      <div class="controls-info">
+        <div class="control"><kbd>←</kbd> <kbd>→</kbd> Move</div>
+        <div class="control"><kbd>SPACE</kbd> Fire</div>
+      </div>
+      <button id="startBtn" class="action-btn">PLAY</button>
+    </div>
+
+    <!-- PAUSE SCREEN -->
+    <div id="pauseScreen" class="screen hidden">
+      <h1 class="game-title">PAUSED</h1>
+      <button id="resumeBtn" class="action-btn">RESUME</button>
+    </div>
+
+    <!-- OFFLINE PROMPT SCREEN -->
+    <div id="offlinePromptScreen" class="screen hidden">
+      <h1 class="game-title" style="font-size: 24px;">CONNECTION LOST</h1>
+      <p class="game-subtitle" style="margin-top: 20px; text-align: center; line-height: 1.8;">Play Space Shooter while waiting?</p>
+      <div style="display: flex; gap: 20px; margin-top: 40px;">
+        <button id="yesPlayBtn" class="action-btn">YES</button>
+        <button id="noWaitBtn" class="action-btn" style="background: transparent; color: var(--text-primary); border: 2px solid var(--text-primary);">NO</button>
+      </div>
+    </div>
+
+    <!-- WAITING SCREEN -->
+    <div id="waitingScreen" class="screen hidden">
+      <h1 class="game-title" style="font-size: 20px;">WAITING FOR SIGNAL...</h1>
+      <p class="game-subtitle" style="margin-top: 20px; text-align: center; line-height: 1.8;">Page will auto-reload when online.</p>
+    </div>
+
+    <!-- GAME OVER SCREEN -->
+    <div id="gameOverScreen" class="screen hidden">
+      <h1 class="game-over-title">GAME OVER</h1>
+      <div class="final-scores">
+        <div class="final-score-item">
+          <span class="fs-label">SCORE</span>
+          <span id="finalScore" class="fs-value">0</span>
+        </div>
+        <div class="final-score-item">
+          <span class="fs-label">BEST</span>
+          <span id="bestScore" class="fs-value">0</span>
+        </div>
+      </div>
+      <button id="restartBtn" class="action-btn">RESTART</button>
+    </div>
+  </div>
+
+  <script src="starfield.js"></script>
+  <script src="bullet.js"></script>
+  <script src="player.js"></script>
+  <script src="enemy.js"></script>
+  <script src="particles.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
