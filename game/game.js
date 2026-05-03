@@ -304,14 +304,35 @@ const game = new Game();
 // AUTO-RELOAD LOGIC FOR OFFLINE INTERCEPTION
 // ==========================================
 // When the browser detects the internet is back online...
-window.addEventListener('online', () => {
+window.addEventListener('online', async () => {
   const urlParams = new URLSearchParams(window.location.search);
   const originalUrl = urlParams.get('url');
   
   if (originalUrl) {
-    // Optionally change the title or show a message
-    document.title = "Reconnecting...";
-    // Redirect back to the original page
-    window.location.href = originalUrl;
+    document.title = "Verifying Connection...";
+    
+    // The 'online' event only means we connected to the router.
+    // We must verify actual internet access before redirecting.
+    try {
+      // Fetch a tiny, reliable resource (Google's favicon). 
+      // We use mode: 'no-cors' because we only care if the request completes.
+      // We append Date.now() to bypass the browser cache.
+      await fetch('https://www.google.com/favicon.ico?_=' + Date.now(), {
+        method: 'HEAD',
+        mode: 'no-cors'
+      });
+      
+      // If the fetch succeeds without an error, we have real internet!
+      document.title = "Reconnecting...";
+      window.location.href = originalUrl;
+      
+    } catch (error) {
+      // The fetch failed, meaning the router has no internet to the outside world.
+      document.title = "Retro Space Shooter";
+      console.log("Connected to local network, but no actual internet detected.");
+      
+      // Optional: Could add a setInterval here to keep pinging every 5 seconds
+      // until it eventually succeeds.
+    }
   }
 });
